@@ -16,8 +16,10 @@ def _now() -> datetime:
 class Thumbnail(SQLModel, table=True):
     id: str = Field(default_factory=_uuid4, primary_key=True)
 
-    job_id: str = Field(foreign_key="job.id")
     # Every Thumbnail belongs to a Job.
+    job_id: str = Field(foreign_key="job.id")
+    
+    image_kit_url: Optional[str] = Field(default=None)
     
     style_name: str = Field(default="")
     status: str = Field(default="pending")
